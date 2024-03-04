@@ -20,6 +20,7 @@ public class Movement : MonoBehaviour
         input.Enable();
         input.Player.Movement.performed += OnMovementPerformed;
         input.Player.Movement.canceled += OnMovementCancelled;
+        input.Player.Attack.started += OnAttackStarted;
     }
 
     private void OnDisable()
@@ -27,6 +28,7 @@ public class Movement : MonoBehaviour
         input.Disable();
         input.Player.Movement.performed -= OnMovementPerformed;
         input.Player.Movement.canceled -= OnMovementCancelled;
+        input.Player.Attack.started -= OnAttackStarted;
     }
 
     private void FixedUpdate()
@@ -42,5 +44,9 @@ public class Movement : MonoBehaviour
     private void OnMovementCancelled(InputAction.CallbackContext value)
     {
         moveVector = Vector2.zero;
+    }
+    private void OnAttackStarted(InputAction.CallbackContext value)
+    {
+        Debug.Log("Button Pressed");
     }
 }
