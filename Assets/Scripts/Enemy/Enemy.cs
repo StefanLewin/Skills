@@ -1,41 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using Scriptable_Objects;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
-public class Enemy : MonoBehaviour
+namespace Enemy
 {
-    [SerializeField]
-    private new Rigidbody2D rigidbody { get; set; }
-    private EnemyState m_EnemyState;
-
-    [SerializeField] private EnemyType type;
-    [SerializeField] private Transform spawnPoint;
-    [SerializeField] private string name;
-    [SerializeField] private int health;
-    
-    
-    // Start is called before the first frame update
-    private void Start()
+    public abstract class Enemy : MonoBehaviour
     {
-        rigidbody = this.transform.GetComponent<Rigidbody2D>();
-        m_EnemyState = EnemyState.IDLE;
+        [HideInInspector] public EnemyAttributes attributes;
     }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        
-    }
-
-    private void Attack()
-    {
-        
-    }
-}
-
-public enum EnemyState
-{
-    IDLE,
-    HOSTILE
 }
