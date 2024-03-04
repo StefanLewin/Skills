@@ -5,6 +5,6 @@ namespace Enemy
 {
     public abstract class Enemy : MonoBehaviour
     {
-        [HideInInspector] public EnemyAttributes attributes;
+        [SerializeField] protected EnemyAttributes attributes;
     }
 }

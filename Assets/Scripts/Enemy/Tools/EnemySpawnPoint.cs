@@ -5,12 +5,10 @@ namespace Enemy.Tools
 {
     public class EnemySpawnPoint : MonoBehaviour
     {
-        [SerializeField] private EnemyAttributes enemyType;
         [SerializeField] private GameObject enemyPrefab;
 
         public void SpawnEnemy()
         {
-            this.enemyPrefab.GetComponent<Enemy>().attributes = this.enemyType;
             var newEnemy = Instantiate(this.enemyPrefab, this.transform);
         }
         
