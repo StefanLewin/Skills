@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     private PlayerInputAction input;
     private Vector2 moveVector = Vector2.zero;
     public Rigidbody2D rb;
-    private float moveSpeed = 8.5f;
+    public float moveSpeed = 8.5f;
     public Animator animator;
 
     private void Awake()
@@ -36,7 +36,7 @@ public class Movement : MonoBehaviour
     {
         rb.velocity = moveVector * moveSpeed;
         animator.SetFloat("Horizontal", moveVector.x);
-        animator.SetFloat("Vertival", moveVector.y);
+        animator.SetFloat("Vertical", moveVector.y);
         animator.SetFloat("Speed", moveVector.sqrMagnitude);
     }
 
