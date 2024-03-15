@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     public Rigidbody2D rb;
     public float moveSpeed = 8.5f;
     public Animator animator;
+    public BoxCollider2D cd;
 
     private void Awake()
     {
@@ -38,19 +39,30 @@ public class Movement : MonoBehaviour
         animator.SetFloat("Horizontal", moveVector.x);
         animator.SetFloat("Vertical", moveVector.y);
         animator.SetFloat("Speed", moveVector.sqrMagnitude);
+        if (moveVector.y != 0)
+        {
+            animator.SetFloat("LookVertical", moveVector.y);
+            animator.SetFloat("LookHorizontal", moveVector.x);
+        }
+        else if (moveVector.y == 0 && moveVector.x != 0)
+        {
+            animator.SetFloat("LookHorizontal", moveVector.x);
+            animator.SetFloat("LookVertical", 0);
+        }
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext value)
     {
         moveVector = value.ReadValue<Vector2>();
     }
-
+    
     private void OnMovementCancelled(InputAction.CallbackContext value)
     {
         moveVector = Vector2.zero;
     }
     private void OnAttackStarted(InputAction.CallbackContext value)
     {
-        Debug.Log("Button Pressed");
+        Debug.Log("Attacking");
+        animator.SetTrigger("Attacking");
     }
 }
