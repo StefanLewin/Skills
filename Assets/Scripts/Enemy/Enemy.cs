@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
 using Enemy.Enums;
 using Scriptable_Objects;
 using UnityEngine;
@@ -19,46 +17,22 @@ namespace Enemy
         protected EnemyState State;
         protected Rigidbody2D Rigidody;
 
-        private Vector3 _horizontalPos1;
-        private Vector3 _horizontalPos2;
-        private Vector3 _verticalPos1;
-        private Vector3 _verticalPos2;
-
-        private Vector3 _startPosition;
-
-        private List<Vector3> _waypoints;
+        public List<Transform> _waypoints;
         
         private float speed = 3f;
 
         private bool _waiting = false;
         private int _wayPointIndex;
         
-        public List<Vector3> Waypoints
+        public List<Transform> Waypoints
         {
-            get{}
-            set { _waypoints = new List<Vector3>(value); }
+            get { return _waypoints;}
+            set { _waypoints = new List<Transform>(value); }
         }
 
         protected virtual void Awake()
         {
             this.Rigidody = this.GetComponent<Rigidbody2D>();
-            
-            
-            _startPosition = this.transform.position;
-
-            _horizontalPos1 = _startPosition + Vector3.left;
-            _horizontalPos2 = _startPosition + Vector3.right;
-            _verticalPos1 = _startPosition + Vector3.up;
-            _verticalPos2 = _startPosition + Vector3.down;
-
-            _waypoints = new List<Vector3>
-            {
-                _horizontalPos1,
-                _horizontalPos2,
-                _verticalPos1,
-                _verticalPos2
-            };
-            
         }
 
         protected virtual void FixedUpdate()
@@ -70,16 +44,16 @@ namespace Enemy
         {
             if (_waypoints.Count == 0) return;
             if (_waiting) return;
-            var wp = _waypoints[_wayPointIndex];
+            Transform wp = _waypoints[_wayPointIndex];
             
-            if (Vector3.Distance(this.Rigidody.position, wp) < 0.1f)
+            if (Vector3.Distance(this.Rigidody.position, wp.position) < 0.1f)
             {
                 _wayPointIndex = (_wayPointIndex + 1) % _waypoints.Count;
                 StartCoroutine(Wait());
             }
             else
             {
-                Vector2 direction = (wp - transform.position).normalized;
+                Vector2 direction = (wp.position - transform.position).normalized;
                 Rigidody.MovePosition(Rigidody.position + direction * (speed * Time.fixedDeltaTime));
             }
         }
