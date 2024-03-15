@@ -58,7 +58,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -120,6 +120,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attributes: {fileID: 11400000, guid: 932068c7426e36645b27a084498c48e6, type: 2}
+  idleSprite: {fileID: 21300000, guid: b6a4183922217a44f9bf9209ecd32f64, type: 3}
+  hostileSprite: {fileID: 21300000, guid: 9412af9b21c03944b9665be534fd85f9, type: 3}
+  speed: 1
 --- !u!1 &5429453894516826008
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,8 +196,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.6650944, b: 0.6650944, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b6a4183922217a44f9bf9209ecd32f64, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
